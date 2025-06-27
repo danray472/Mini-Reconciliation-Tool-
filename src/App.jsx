@@ -2,10 +2,14 @@ import { useState } from 'react';
 import { FileText, BarChart3, User, TrendingUp, Shield, Zap } from 'lucide-react';
 import FileUpload from './components/FileUpload';
 import ReconciliationSummary from './components/ReconciliationSummary';
+import Spinner from './components/Spinner';
 import { parseCSV, exportToCSV } from './utils/csvParser';
 import { reconcileTransactions } from './utils/reconciliation';
 
 function App() {
+
+
+
   const [internalFile, setInternalFile] = useState(null);
   const [providerFile, setProviderFile] = useState(null);
   const [internalData, setInternalData] = useState([]);
@@ -74,34 +78,34 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Premium Header with Gradient */}
-      <div className="gradient-bg shadow-xl">
+      <div className="gradient-bg shadow-xl relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center justify-center w-20 h-20 bg-white bg-opacity-20 rounded-2xl backdrop-blur-sm border border-white border-opacity-30">
-                <BarChart3 className="h-10 w-10 text-primary-900" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-white">Transaction Reconciliation Tool</h1>
-                <p className="text-primary-100 font-medium">Enterprise-grade financial data analysis platform</p>
+          <div className="flex flex-col items-center w-full gap-4 py-6 sm:flex-row sm:justify-between sm:items-center sm:gap-8 sm:py-4">
+            {/* Logo + Title + Subtitle */}
+            <div className="flex flex-col items-center w-full sm:flex-row sm:items-center sm:gap-4 sm:w-auto">
+              <BarChart3 className="h-12 w-12 text-primary-100 mb-2 sm:mb-0 sm:mr-2" />
+              <div className="text-center sm:text-left">
+                <h1 className="text-2xl font-bold text-white leading-tight">Transaction Reconciliation Tool</h1>
+                <p className="text-primary-100 font-medium mt-1">Enterprise-grade financial data analysis platform</p>
               </div>
             </div>
-            <div className="flex items-center space-x-6">
-              <div className="hidden md:flex items-center space-x-6 text-primary-100">
-                <div className="flex items-center space-x-2">
+            {/* Badges + Developed by Dan */}
+            <div className="flex flex-col items-center w-full gap-2 sm:flex-row sm:justify-end sm:items-center sm:w-auto sm:gap-6 sm:mt-0 mt-4">
+              <div className="hidden sm:flex flex-row gap-6 w-auto text-primary-100 justify-center">
+                <div className="hidden sm:flex items-center gap-1">
                   <Shield className="h-5 w-5" />
                   <span className="font-medium">Secure</span>
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center gap-1">
                   <Zap className="h-5 w-5" />
                   <span className="font-medium">Fast</span>
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="hidden sm:flex items-center gap-1">
                   <TrendingUp className="h-5 w-5" />
                   <span className="font-medium">Accurate</span>
                 </div>
               </div>
-              <div className="flex items-center space-x-3 bg-white bg-opacity-20 rounded-xl px-4 py-2 backdrop-blur-sm border border-white border-opacity-30">
+              <div className="flex items-center gap-2 px-3 py-1 rounded-lg border border-white/30 bg-white/10 w-fit">
                 <User className="h-5 w-5 text-black" />
                 <span className="text-gray-900 font-semibold">Developed by Dan</span>
               </div>
@@ -110,8 +114,11 @@ function App() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {error && (
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 py-4 sm:py-12">
+        {loading && (
+          <Spinner />
+        )}
+        {!loading && error && (
           <div className="mb-8 animate-fadeIn">
             <div className="card bg-error-50 border-error-200 border-2">
               <div className="p-6">
