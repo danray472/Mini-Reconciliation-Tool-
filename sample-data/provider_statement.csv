@@ -1,0 +1,13 @@
+transaction_reference,amount,status,date,processor_fee
+TXN001,150.00,success,2024-01-15,4.50
+TXN002,75.50,success,2024-01-15,2.27
+TXN003,195.00,pending,2024-01-16,0.00
+TXN004,89.99,success,2024-01-16,2.70
+TXN006,45.00,success,2024-01-17,1.35
+TXN007,300.00,success,2024-01-18,9.00
+TXN008,67.25,pending,2024-01-18,0.00
+TXN009,180.00,success,2024-01-19,5.40
+TXN010,95.00,success,2024-01-19,2.85
+TXN013,175.00,success,2024-01-21,5.25
+TXN014,88.50,success,2024-01-21,2.66
+TXN015,120.00,failed,2024-01-22,0.00
